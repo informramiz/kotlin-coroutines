@@ -15,7 +15,9 @@ class MainViewModel : ViewModel() {
 
     fun printAfterDelay() {
         viewModelScope.launch {
-            printLog()
+            withContext(Dispatchers.IO) {
+                printLog()
+            }
         }
     }
 
