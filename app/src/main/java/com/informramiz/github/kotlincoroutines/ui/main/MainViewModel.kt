@@ -35,10 +35,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun fetchFullName(): LiveData<String> {
         val fullNameLiveData = MutableLiveData<String>()
         viewModelScope.launch {
-            val firstName = dateRepository.getFirstName()
-            val lastName = dateRepository.getLastName()
+            val firstName = async { dateRepository.getFirstName() }
+            val lastName = async { dateRepository.getLastName() }
             fullNameLiveData.value = this@MainViewModel.getApplication<Application>()
-                .applicationContext.getString(R.string.full_name_format, firstName, lastName)
+                .applicationContext.getString(R.string.full_name_format, firstName.await(), lastName.await())
         }
 
         return fullNameLiveData

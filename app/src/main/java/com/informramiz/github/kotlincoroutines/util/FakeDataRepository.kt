@@ -24,8 +24,4 @@ class FakeDataRepository {
             }
         }
     }
-
-    suspend fun getFullName(): String {
-        return getFirstName() + " " + getLastName()
-    }
 }
