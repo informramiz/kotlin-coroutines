@@ -15,8 +15,12 @@ class MainViewModel : ViewModel() {
 
     fun printAfterDelay() {
         viewModelScope.launch {
-            delay(1000) //suspend for 1 second
-            Log.i(MainViewModel::class.java.simpleName, "1 second passed")
+            printLog()
         }
+    }
+
+    private suspend fun printLog() {
+        delay(1000) //suspend for 1 second
+        Log.i(MainViewModel::class.java.simpleName, "1 second passed")
     }
 }
